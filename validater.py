@@ -6,15 +6,15 @@ def validate(key: str, return_message=False):
     # (requests) ...
 
     if return_message == bool(False):
-        r = cloud.request("GET", key_system)
-        if str(key) == r.text:
+        r = cloud.request("GET", key_system).text
+        if str(key) == r.strip():
             return True
-        elif str(key) != r.text:
+        elif str(key) != r.strip():
             return False
 
     elif return_message == bool(True):
-        r = cloud.request("GET", key_system)
-        if str(key) == r.text:
+        r = cloud.request("GET", key_system).text
+        if str(key) == r.strip():
             return"Valid"
         else:
             return"Invalid"
